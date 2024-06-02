@@ -1,0 +1,93 @@
+<main class="main">
+  <div class="bg-white py-8 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto lg:text-center">
+        <h2 class="text-sm font-medium text-gray-500">Commands</h2>
+        <h3 class="text-sm font-medium text-gray-500">Status: <strong>{{setStatus()}}</strong></h3>
+        <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+          <li class="col-span-1 flex rounded-md shadow-sm">
+            <div
+              class="flex w-16 flex-shrink-0 items-center justify-center bg-pink-600 rounded-l-md text-sm font-medium text-white">
+              O
+            </div>
+            <div
+              class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+              <div class="flex-1 truncate px-4 py-2 text-sm">
+                <app-button (click)="recordAudio()" [disabled]="recording" buttonText="Record">
+
+                </app-button>
+                <p class="text-gray-500">Records the Audio</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-span-1 flex rounded-md shadow-sm">
+            <div
+              class="flex w-16 flex-shrink-0 items-center justify-center bg-purple-600 rounded-l-md text-sm font-medium text-white">
+              O
+            </div>
+            <div
+              class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+              <div class="flex-1 truncate px-4 py-2 text-sm">
+                <app-button (click)="stopRecordAudio()" [disabled]="!recording" buttonText="Stop Recording">
+
+                </app-button>
+                <p class="text-gray-500">Stops the recording</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-span-1 flex rounded-md shadow-sm">
+            <div
+              class="flex w-16 flex-shrink-0 items-center justify-center bg-yellow-500 rounded-l-md text-sm font-medium text-white">
+              >
+            </div>
+            <div
+              class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+              <div class="flex-1 truncate px-4 py-2 text-sm">
+                <app-button (click)="playRecordedAudio()" buttonText="Play" [disabled]="!audio">
+
+                </app-button>
+                <p class="text-gray-500">Play the Recorded Audio</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-span-1 flex rounded-md shadow-sm">
+            <div
+              class="flex w-16 flex-shrink-0 items-center justify-center bg-green-500 rounded-l-md text-sm font-medium text-white">
+              S
+            </div>
+            <div
+              class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+              <div class="flex-1 truncate px-4 py-2 text-sm">
+                <app-button (click)="sendRecordedAudio()" [disabled]="!audio" buttonText="Send">
+
+                </app-button>
+                <p class="text-gray-500">Sends the Audio</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="" *ngIf="newAudio">
+        <div class="relative py-4">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="bg-white px-2 text-sm text-gray-500">Audio Section</span>
+          </div>
+        </div>
+
+        <div class="flex py-4">
+
+          <div>
+            <h4 class="text-lg font-bold">Fixed Audio</h4>
+
+            <audio [src]="newAudio" controls></audio>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
