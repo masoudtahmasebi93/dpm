@@ -4,13 +4,16 @@ import {Prisma, PrismaClient} from '@prisma/client'
 import express from 'express'
 import cors from 'cors'
 import multer from 'multer';
+import helmet from "helmet";
 import {audioProcess} from '../services/audio.service'
-import * as path from "node:path";
 
 const prisma = new PrismaClient()
 const app = express()
 
 app.use(express.json())
+// Use Helmet!
+app.use(helmet());
+
 const whitelist = ['http://localhost:4200']
 const corsOptions = {
     origin: function (origin: any, callback: any) {
