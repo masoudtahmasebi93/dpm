@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {HttpService} from "../../services/http.service";
-import {AudioModel} from "../../models/audio.model";
-import {AudioService} from "../../services/audio.service";
-import {NgIf} from "@angular/common";
-import {ButtonComponent} from "../../components/button/button.component";
-import {ValidatorService} from "../../services/validator.service";
+import { Component } from '@angular/core';
+import { HttpService } from "../../services/http.service";
+import { AudioModel } from "../../models/audio.model";
+import { AudioService } from "../../services/audio.service";
+import { NgIf } from "@angular/common";
+import { ButtonComponent } from "../../components/button/button.component";
+import { ValidatorService } from "../../services/validator.service";
 
 @Component({
   selector: 'app-home',
@@ -49,7 +49,7 @@ export class HomeComponent {
   recordAudio() {
     try {
       this.resetRecording();
-      navigator.mediaDevices.getUserMedia({audio: true})
+      navigator.mediaDevices.getUserMedia({ audio: true })
         .then(stream => {
           this.mediaRecorder = new MediaRecorder(stream);
           this.mediaRecorder.start();
@@ -96,13 +96,15 @@ export class HomeComponent {
 
   sendRecordedAudio() {
     const email = window.prompt('What is your email?');
-    if (email !== '' || email !== null || this.validator.validateEmail(email)) {
+    if (email !== '' && email !== null && this.validator.validateEmail(email)) {
       const data = new AudioModel();
       data.audio = this.audioBlob;
       data.email = email;
       this.audioService.sendRecordedAudio(data).subscribe(res => {
         this.newAudio = res;
       });
+    } else {
+      alert('That is not the correct input');
     }
 
   }
